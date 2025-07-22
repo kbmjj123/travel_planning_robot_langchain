@@ -6,4 +6,4 @@ def generate_llm(model_name: str = None, temperature: float = 0.0, max_tokens: i
     """生成一LLM模型"""
     if type(model_name) is None:
         model_name = os.getenv("MODEL")
-    return ChatTongyi(model=model_name, temperature=temperature, max_tokens=max_tokens)
+    return ChatTongyi(model=model_name, streaming=True)

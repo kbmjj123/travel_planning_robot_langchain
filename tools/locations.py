@@ -10,7 +10,7 @@ def get_location_coordinate(
         city: Annotated[str, "要获取经纬度的地点所在的城市名称，必须是地级市，不能是县级市或村镇。如果能确定的话填写，不能确定可以不填"] = ""
 ) -> List[Dict[str, str]]:
     """位置获取工具。根据地点名称和城市名称获取该地点的经纬度。由于可能存在同名地点，所以返回的是一个包含所有同名地点详细地址和经纬度的列表"""
-
+    print("准备调用----》get_location_coordinate")
     _ = load_dotenv(find_dotenv())
     amap_key = os.getenv("AMAP_API_KEY")
 

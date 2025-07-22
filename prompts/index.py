@@ -11,4 +11,4 @@ def generate_prompt():
     return prompt_template
 
 if __name__ == '__main__':
-    print(generate_prompt("我要去北京"))
+    print(generate_prompt())

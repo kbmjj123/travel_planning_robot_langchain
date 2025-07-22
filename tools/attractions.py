@@ -1,3 +1,4 @@
+import json
 import time
 
 from selenium import webdriver
@@ -82,13 +83,18 @@ def get_scenic_spot_details(driver, url, spot_name):
 
 @tool
 def get_attractions_information(
-    destination: Annotated[str, "目的地名称，必须是一个明确的城市或村镇名称"]
+    destination: Annotated[str, "目的地名称"]
 ) -> dict:
     """景点搜索工具。获取目的地概览和景点信息列表"""
+    print("准备调用get_location_coordinate")
+    if type(destination) == str:
+        # 将字符串转为json
+        destination = json.loads(destination).get("destination")
     _ = load_dotenv(find_dotenv())
     driver = init_web_driver()
     base_search_url = 'https://www.mafengwo.cn/search/q.php'
     search_url = f"{base_search_url}?q={destination}"
+    print("即将搜索的链接是", search_url)
     soup = BeautifulSoup(fetch_page_with_selenium(driver, search_url), 'html.parser')
     more_link = soup.find('a', text='查看更多相关旅行地>>')['href']
     print(more_link)
