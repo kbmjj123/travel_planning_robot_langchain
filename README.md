@@ -36,4 +36,11 @@ travel_planning_robot_langchain/
 ├── app.py
 └── requirements.txt
 
-项目按照最基本的python项目的模块管理(提供__init__.py，将需要对外暴露的元素定义在__init__.py中)，模块管理采用python的包管理工具pip，项目依赖包在requirements.txt文件中。
+项目按照最基本的python项目的模块管理(提供__init__.py，将需要对外暴露的元素定义在__init__.py中)，
+模块管理采用python的包管理工具pip，项目依赖包在requirements.txt文件中。
+
+### 项目存在的问题
+1. 项目依赖于`LangChain`的`create_react_agent`，导致必须使用带有英文标识的提示词(这边目前采用的英文版本的提示词)，否则直接报错；
+2. 项目采用一个提示词，然后由agent自行决定接下来应该做什么，提示词的生成逻辑比较复杂，需要结合项目实际需求进行修改；
+3. 由于采用的agent+AgentExecutor，因此无法流式输出，而是阶段性chunked输出；
+4. 有一些tool应该需要支持同时调用，但是目前的react_agent并不能实现到。
